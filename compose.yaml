@@ -23,6 +23,8 @@ services:
     command: mongod --port 27018
     ports:
       - 27018:27018
+    volumes:
+      - mcat-scraper-database:/data/db
 
   mcat-scraper-api:
     build:
@@ -44,3 +46,12 @@ services:
     volumes:
       - ./scraper:/usr/src/scraper
       - /usr/src/scraper/node_modules
+
+networks:
+  default:
+    name: mcat-scraper
+
+volumes:
+  mcat-scraper-database:
+    name: "mcat-scraper-database"
+    
