@@ -107,7 +107,10 @@ const watcher = watch(show, (newShow, oldShow) => {
 
       <!-- Answer slideout, can probably turn into a component -->
       <ui-side-sheet v-model="show" closable>
-        <template #title>Question: {{ selectedQuestion.question.question}}</template>
+        <template #title>
+          <!-- Can't change balm UI to span, so this is the next best thing, need the br tags from the db to actually be used -->
+          <span v-html="'Question:' + selectedQuestion.question.question"></span>
+        </template>
         <ui-list>
           <ui-item>
             <ui-form-field>

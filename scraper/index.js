@@ -20,7 +20,11 @@ async function scrapeMCATQuestion() {
     })
     let webData = axiosResponse.data
     const $ = cheerio.load(webData)
-    const question = $('.insidecontainer').find('p').first().text()
+    let question = ""
+    //Version Upgrade: Need to handle images here as well, will probably take more than just a little fix like this
+    $('.insidecontainer').children().filter('div').eq(1).children('p').each(function (i, elem){
+        question += $(this).text() + '<br>'
+    })
     const answerForm = $("#answer_form")
     const correctAnswerText = $("#answer").find("b").text()
     const answer = $("#answer").children("div:last-child").find("p").next()
